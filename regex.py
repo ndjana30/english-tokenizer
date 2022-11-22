@@ -15,7 +15,42 @@ import re
 # r=Regex()
 
 class Regex():
+
+    """
+    A class used to represent the steps i used in tokenizing sentences and repressenting tokens as parts of speech
+
+    ...
+
+    Attributes
+    ----------
+
+    Methods
+    -------
+    tokenize()
+        splits the matching sentence that passed the regex text
+    
+    classification()
+        gets the tokens from the splited sentence and passed it through some criteria to determine the parts of speech of each token
+    """
+
+
     def __init__(self)->None:
+
+        """
+        This method compares a sentence to a desired regex pattern
+
+
+        Attributes
+        ----------
+
+        Excepts
+        -------
+        prints no matching sentence if the comparing sentence doesn't match the desired pattern
+
+        Returns
+        -------
+        returns None
+        """
         n=None
         try:
             self._sentence_pattern = re.compile("^[A-Z\s]+[a-z\s]+\.$")
@@ -27,11 +62,40 @@ class Regex():
             print("\t no matching sentence found")
 
     def tokenize(self)->list:
+        """
+        This method gets the matching sentence and splits it into tokens 
+
+
+        Attributes
+        ----------
+
+        Excepts
+        -------
+
+        Returns
+        -------
+        returns a list of tokens
+        """
         self._tokens = self._matching_string.split()
         print(self._tokens)
+        return self.tokens
     
     def classification(self)->str:
-       
+        """
+        This method gets the tokens and classify them through parts of speech
+
+
+        Attributes
+        ----------
+
+        Excepts
+        -------
+        prints no matching part of speech if the comparing tokens doesn't match the desired pattern
+
+        Returns
+        -------
+        returns a String
+        """
         self._noun_pattern=re.compile("^[A-Z|a-z]+[^0-9]+[^A-Za-z0-9]+$")
         for i in self._tokens:
             try:
