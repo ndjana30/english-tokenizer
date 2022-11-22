@@ -1,4 +1,5 @@
 import re
+from PyDictionary import PyDictionary
 #pattern is 
 #2 lower case letters
 #between 1 to 3 digits
@@ -51,13 +52,13 @@ class Regex():
         -------
         returns None
         """
-        n=None
+        
         try:
             self._sentence_pattern = re.compile("^[A-Z\s]+[a-z\s]+\.$")
-            self._matching_string=self._sentence_pattern.search("My name is davy.")[0]
+            self._matching_string=self._sentence_pattern.search("Hello how are you today.")[0]
             print("matching sentence is \t" + self._matching_string)
-            self.tokenize()
-            self.classification()
+            # self.tokenize()
+            # self.classification()
         except:
             print("\t no matching sentence found")
 
@@ -78,7 +79,8 @@ class Regex():
         """
         self._tokens = self._matching_string.split()
         print(self._tokens)
-        return self.tokens
+        return self._tokens
+        
     
     def classification(self)->str:
         """
@@ -87,6 +89,7 @@ class Regex():
 
         Attributes
         ----------
+        dictionary: a pydictionary object
 
         Excepts
         -------
@@ -96,17 +99,20 @@ class Regex():
         -------
         returns a String
         """
-        self._noun_pattern=re.compile("^[A-Z|a-z]+[^0-9]+[^A-Za-z0-9]+$")
+        dictionary = PyDictionary()
         for i in self._tokens:
-            try:
-                self._noun_pattern.search(i)[0]
-                n=self._noun_pattern.search(i)[0]
-                print("noun found\t"+n)
-            except:
-                print("no match for noun")
+            print(f'token \t{i}', '\t',dictionary.meaning(i))
+        # self._noun_pattern=re.compile("^[A-Z|a-z]+[^0-9]+[^A-Za-z0-9]+$")
+        # for i in self._tokens:
+        #     try:
+        #         self._noun_pattern.search(i)[0]
+        #         n=self._noun_pattern.search(i)[0]
+        #         print("noun found\t"+n)
+        #     except:
+        #         print("no match for noun")
         # self._noun_pattern = re.compile("^[]$")
 
 
 r=Regex()
-# r.tokenize()
-# r.classification()
+r.tokenize()
+r.classification()
