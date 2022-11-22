@@ -99,7 +99,7 @@ class Regex():
         -------
         returns a String
         """
-        dictionary = PyDictionary()
+        dictionary = PyDictionary() 
         for i in self._tokens:
             print(f'token \t{i}', '\t',dictionary.meaning(i))
         # self._noun_pattern=re.compile("^[A-Z|a-z]+[^0-9]+[^A-Za-z0-9]+$")
