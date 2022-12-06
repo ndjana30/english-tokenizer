@@ -115,12 +115,19 @@ class Regex():
 
     def search_partsOfSpeech(self):
         with open('dictionary.txt','r') as file:
-            content = file.read()
-            for i in self._tokens:
-                if i in content:
-                    print(i +'\t found')
-                else:
-                    print("not found")
+            content = file.readlines()
+            # content.split()
+            for i in content:
+                for j in self._tokens:
+                    if j == i.split()[0]:
+                        print("yes found: ", j, "is a ",i.split()[1])
+
+               
+            # for i in self._tokens:
+            #     if i in content:
+            #         print(i +'\t found')
+            #     else:
+            #         print("not found")
             # if self._tokens in content
 
 r=Regex()
