@@ -55,7 +55,7 @@ class Regex():
         
         try:
             self._sentence_pattern = re.compile("^[A-Z\s]+[a-z\s]+\.$")
-            self._matching_string=self._sentence_pattern.search("Hello how are you today.")[0]
+            self._matching_string=self._sentence_pattern.search("Come get your pencil.")[0]
             print("matching sentence is \t" + self._matching_string)
             # self.tokenize()
             # self.classification()
@@ -113,6 +113,18 @@ class Regex():
         # self._noun_pattern = re.compile("^[]$")
 
 
+    def search_partsOfSpeech(self):
+        with open('dictionary.txt','r') as file:
+            content = file.read()
+            for i in self._tokens:
+                if i in content:
+                    print(i +'\t found')
+                else:
+                    print("not found")
+            # if self._tokens in content
+
 r=Regex()
 r.tokenize()
-r.classification()
+r.search_partsOfSpeech()
+# r.search_partsOfSpeech('C:\Users\Dave237\Tokenizer\dictionary.txt',self._tokens)
+# r.classification()
